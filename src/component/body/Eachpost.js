@@ -1,21 +1,23 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import EachPostImage from "./EachPostImage";
 const Eachpost = ({ eachPostData }) => {
-  const [postImage, setPostImage] = useState({});
-  const [postUser, setPostUser] = useState();
-  const [categoriesArray, setCategoriesArray] = useState([]);
+  
+  // const [postImage, setPostImage] = useState(null);
+  const [postUser, setPostUser] = useState(null);
+  const [categoriesArray, setCategoriesArray] = useState(null);
   useEffect(() => {
-    const media = axios.get(
-      `https://smartblog.portfolios.digital/wp-json/wp/v2/media/${eachPostData?.featured_media}`
-    );
+    // const media = axios.get(
+    //   `https://smartblog.portfolios.digital/wp-json/wp/v2/media/${eachPostData?.featured_media}`
+    // );
     const user = axios.get(
       `https://smartblog.portfolios.digital/wp-json/wp/v2/users/${eachPostData?.author}`
     );
 
-    Promise.all([media, user]).then((results) => {
-      setPostImage(results[0]);
-      setPostUser(results[1]);
-      // console.log(results[1]);
+    Promise.all([user]).then((results) => {    
+      // setPostImage(results[0]);
+      setPostUser(results[0]);
+
       setCategoriesArray([]);
       for (let i = 0; i < eachPostData?.categories?.length; i++) {
         axios
@@ -48,7 +50,9 @@ const Eachpost = ({ eachPostData }) => {
             <i class="fas fa-pen-nib fa-1x" style={{ color: "#469408" }}></i>
           </div>
         </div>
-        <div className="group box-border relative w-[320px] h-[202px] min-w-[320px] min-h-[202px] mr-[17px] overflow-hidden  ">
+
+<EachPostImage eachPostData={eachPostData}></EachPostImage>
+        {/* <div className="group box-border relative w-[320px] h-[202px] min-w-[320px] min-h-[202px] mr-[17px] overflow-hidden  ">
           <div className="box-border w-full h-full">
             <img
               className="box-border w-full h-full object-cover"
@@ -74,6 +78,9 @@ const Eachpost = ({ eachPostData }) => {
             <div>jkdgnsdjklgnsjdbjkl</div>
           </div>
         </div>
+ */}
+
+
         <div className="box-border flex flex-col justify-start items-start text-[#141617] ">
           <h1
             className="box-border transition-colors duration-200 ease-in text-[36px] font-[600] leading-[1.2] tracking-[-0.015em]  text-left hover:text-[#65bd7d] cursor-pointer"

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Scrollheight } from "../../Customhook/Scrollheight";
 import {
   Logocontainer,
@@ -13,15 +14,20 @@ import {
   Category,
 } from "./Headerstyle";
 const navComponent = [
-  { id: 2, name: "Tech", visibility: false },
-  { id: 11, name: "Home Appliances", visibility: false },
-  { id: 4, name: "Tips", visibility: false },
-  { id: 8, name: "Buyers Guide", visibility: false },
+  { id: 2, name: "Tech", slug: "Tech", visibility: false },
+  {
+    id: 11,
+    name: "Home Appliances",
+    slug: "home-appliances",
+    visibility: false,
+  },
+  { id: 4, name: "Tips", slug: "tips", visibility: false },
+  { id: 8, name: "Buyers Guide", slug: "buyers-guide", visibility: false },
 ];
 
 const Header = () => {
   const scrollheight = Scrollheight();
-  console.log(scrollheight);
+
   return (
     <Maincontainer>
       <Insidecontainer>
@@ -32,15 +38,23 @@ const Header = () => {
           <Navcontainer>
             {navComponent.map((navCategory) => {
               return (
-                <Category key={navCategory.id}
-                  className={`${
-                    navCategory.visibility
-                      ? " border-[#65bd7d]"
-                      : "border-transparent"
-                  }`}
+                <Link
+                  to={{
+                    pathname: `/category/${navCategory.slug}`,
+                    state: { categoryId: navCategory.id },
+                  }}
                 >
-                  {navCategory.name}
-                </Category>
+                  <Category
+                    key={navCategory.id}
+                    className={`${
+                      navCategory.visibility
+                        ? " border-[#65bd7d]"
+                        : "border-transparent"
+                    }`}
+                  >
+                    {navCategory.name}
+                  </Category>
+                </Link>
               );
             })}
             <li className="pt-[31px]">

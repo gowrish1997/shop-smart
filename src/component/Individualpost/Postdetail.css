@@ -1,0 +1,143 @@
+* {
+    box-sizing: border-box;
+}
+.body{
+    background-color: green;
+}
+ul{
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+.post{
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    color: #141617;
+    
+}
+.post-content{
+    color: #141617;
+    box-sizing: border-box;
+    display: block;
+    line-height: 1.72;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.015em;
+    font-style:normal ;
+}
+strong{
+    font-weight: bolder !important;
+}
+
+.fusion-post-content p, .post-content p {
+    margin: 0 0 20px;
+}
+.post-content p{
+    margin-top: 0;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+p{
+    box-sizing: border-box;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.has-large-font-size {
+    box-sizing: border-box;
+    font-size:24px !important;
+}
+.has-normal-font-size {
+    font-size: 16px ;
+}
+figure {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+}
+.wp-block-image img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: bottom;
+}
+img {
+    border-style: none;
+}
+/* #main .fusion-portfolio h2, #main .post h2, #wrapper #main .post h2, #wrapper #main .post-content .fusion-title h2, #wrapper #main .post-content .title h2, #wrapper .fusion-title h2, #wrapper .post-content h2, #wrapper .title h2, .fusion-modal h2, .fusion-tb-footer h2, .fusion-tb-page-title-bar h2, .fusion-widget-area h2, h2.entry-title {
+    
+} */
+#main .post h2, #main .reading-box h2, #main h2, .ei-title h2, .fusion-modal h2, .fusion-tb-footer h2, .fusion-tb-page-title-bar h2, .fusion-title h2, .fusion-widget-area h2, .main-flex .slide-content h2, .post-content h2, .title h2 {
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    font-style: normal;
+}
+.wp-block-table {
+    margin: 0 0 1em;
+    overflow-x: auto;
+}
+.wp-block-table table {
+    border-collapse: collapse;
+    width: 100%;
+}
+table {
+    max-width: 100%;
+    background-color: transparent;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+.wp-block-table td, .wp-block-table th {
+    padding: 0.5em;
+    border: 1px solid;
+    word-break: normal;
+}
+.wp-block-table tr td {
+    padding: 10px 20px;
+}
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+ul {
+    list-style-type: disc;
+}
+a:hover{
+    color: #65bd7d;
+}
+.fusion-title-size-two, h2 {
+    margin-top: 0em;
+    margin-bottom: 1.1em;
+}
