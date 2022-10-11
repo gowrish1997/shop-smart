@@ -33,7 +33,7 @@ function App() {
       return post;
     }
   });
-  console.log(allPost);
+
   return (
     <div className="App">
       <Header></Header>
