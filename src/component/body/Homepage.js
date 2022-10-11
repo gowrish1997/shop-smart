@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Link, useLocation } from "react-router-dom";
 
-import Eachpost from "./Eachpost";
+import Eachpost from "./EachpostCopy";
 
 const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
   const location = useLocation();
