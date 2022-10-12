@@ -7,7 +7,7 @@ const EachPostCategory = ({ eachPostData }) => {
     setCategoriesArray([]);
 
     for (let i = 0; i < eachPostData?.categories?.length; i++) {
-        console.log('forloopo')
+     
       axios
         .get(
           `https://smartblog.portfolios.digital/wp-json/wp/v2/categories/${eachPostData?.categories[i]}`

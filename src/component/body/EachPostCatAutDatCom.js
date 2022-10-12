@@ -15,7 +15,7 @@ const EachPostCatAutDatCom = ({ eachPostData }) => {
     
   }, [eachPostData]);
   return (
-    <div className="box-border mb-[15px] text-[13px] leading-[1.5] tracking-[-0.015em] flex flex-row flex-wrap  ">
+    <div className="box-border  text-[13px] leading-[1.5] tracking-[-0.015em] flex flex-row flex-wrap  ">
       <div>{`By ${postUser?.data?.name} \u00A0|`}</div>
       <div>
         {`  \u00A0 ${new Date(eachPostData?.date).toLocaleString("default", {

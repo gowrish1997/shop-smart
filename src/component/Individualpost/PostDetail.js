@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import AuthRelatedPost from "./AuthRelatedPost";
 import RelatedPost from "./RelatedPost";
+import PostSummary from "./PostSummary";
+import PostAuthor from "./PostAuthor";
 import "./Postdetail.css";
 const PostDetail = ({ allpost }) => {
   const [postIndex, setPostIndex] = useState(null);
@@ -12,7 +14,7 @@ const PostDetail = ({ allpost }) => {
 
   return (
     <div className="box-border bg-[#ffffff] p-[30px] pt-[60px] flex flex-row justify-center text-[#141617] ">
-      <div className="max-w-[1200px] h-full  flex flex-col items-start justify-start text-left">
+      <div className="max-w-[1200px] h-full  flex flex-col items-start justify-start text-left leading-[1.2] tracking-[0.015em] ">
         <div className="box-border flex flex-row w-full justify-end items-center border-y-[1px] border-y-[#e7e6e6] border-y-solid py-[5px] mb-[60px] ">
           {postIndex == 0 ? (
             ""
@@ -48,17 +50,19 @@ const PostDetail = ({ allpost }) => {
             }}
           ></h1>
           <div
-            className="post-content"
+            className="post-content mb-[60px] "
             dangerouslySetInnerHTML={{
               __html: allpost[postIndex]?.content?.rendered,
             }}
           ></div>
-           <RelatedPost post={allpost[postIndex]["jetpack-related-posts"]} ></RelatedPost>
+           <RelatedPost post={allpost[postIndex]?.["jetpack-related-posts"]} ></RelatedPost>
+           <PostSummary post={allpost[postIndex]} ></PostSummary>
+           <PostAuthor post={allpost[postIndex]}></PostAuthor>
           <AuthRelatedPost
             post={allpost[postIndex]?.author}
             allpost={allpost}
           ></AuthRelatedPost>
-         
+       
         </article>
       </div>
     </div>
