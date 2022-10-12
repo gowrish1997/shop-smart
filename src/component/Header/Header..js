@@ -36,9 +36,10 @@ const Header = () => {
         </Logocontainer>
         <Movingcontainer>
           <Navcontainer>
-            {navComponent.map((navCategory) => {
+            {navComponent.map((navCategory,index) => {
               return (
                 <Link
+                key={index}
                   to={{
                     pathname: `/category/${navCategory.slug}`,
                     state: { categoryId: navCategory.id },

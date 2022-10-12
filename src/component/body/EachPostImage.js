@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import EachPostCategory from "./EachPostCategory";
 const EachPostImage = ({ eachPostData }) => {
     const [postImage, setPostImage] = useState(null);
   useEffect(() => {
@@ -11,7 +12,7 @@ const EachPostImage = ({ eachPostData }) => {
     Promise.all([media]).then((results) => {
       setPostImage(results[0]);
     });
-  }, []);
+  }, [eachPostData]);
 
   return (
     <div className="group box-border relative w-[320px] h-[202px] min-w-[320px] min-h-[202px] mr-[17px] overflow-hidden  ">
@@ -37,7 +38,7 @@ const EachPostImage = ({ eachPostData }) => {
             __html: eachPostData?.title?.rendered,
           }}
         ></div>
-        <div>jkdgnsdjklgnsjdbjkl</div>
+       <EachPostCategory eachPostData={eachPostData}></EachPostCategory>
       </div>
     </div>
   );

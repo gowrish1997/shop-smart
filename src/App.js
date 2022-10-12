@@ -37,10 +37,10 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-      {allPost && <PaginatedItems
+      {/* {allPost && <PaginatedItems
             allpost={filteredCategory}
             itemsPerPage={10}
-          ></PaginatedItems> }
+          ></PaginatedItems> } */}
       {/* <Switch>
         <Route path="/" exact>
          
@@ -58,7 +58,7 @@ function App() {
           ></PaginatedItems>
         </Route>
       </Switch> */}
-      {/* {allPost && <PostDetail allpost={allPost}></PostDetail>} */}
+      {allPost && <PostDetail allpost={allPost}></PostDetail>}
     </div>
   );
 }
