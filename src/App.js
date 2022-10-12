@@ -18,6 +18,7 @@ function App() {
         const post = await axios.get(
           "https://smartblog.portfolios.digital/wp-json/wp/v2/posts?per_page=100"
         );
+  
         setAllpost(post.data);
       } catch (error) {
         console.log(error.message);
@@ -37,13 +38,13 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
-      {/* {allPost && <PaginatedItems
+     
+     <Switch>
+        <Route path="/" exact>
+        {allPost && <PaginatedItems
             allpost={filteredCategory}
             itemsPerPage={10}
-          ></PaginatedItems> } */}
-      {/* <Switch>
-        <Route path="/" exact>
-         
+          ></PaginatedItems> } 
         </Route>
         <Route path="/category/:categorytype">
           <PaginatedItems
@@ -51,14 +52,13 @@ function App() {
             itemsPerPage={10}
           ></PaginatedItems>
         </Route>
-        <Route path="/:postDeatail">
-          <PaginatedItems
-            allpost={filteredCategory}
-            itemsPerPage={10}
-          ></PaginatedItems>
+        <Route path="/:postDetail">
+        {allPost && <PostDetail allpost={allPost}></PostDetail>}
         </Route>
-      </Switch> */}
-      {allPost && <PostDetail allpost={allPost}></PostDetail>}
+      </Switch>
+    
+     
+    
     </div>
   );
 }

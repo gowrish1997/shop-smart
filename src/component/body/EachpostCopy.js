@@ -4,13 +4,13 @@ import EachPostImage from "./EachPostImage";
 import EachPostDate from "./EachPostDate";
 import EachPostSummary from "./EachPostSummary";
 
-const Eachpost = ({ eachPostData }) => {
+const Eachpost = ({ eachPostData,index }) => {
   return (
     <div className="box-border flex flex-col mb-[50px] ">
       <div className="box-border flex flex-row flex-wrap md:flex-nowrap justify-start align-baseline">
         <EachPostDate eachPostData={eachPostData}></EachPostDate>
         <EachPostImage eachPostData={eachPostData}></EachPostImage>
-        <EachPostSummary eachPostData={eachPostData}></EachPostSummary>
+        <EachPostSummary eachPostData={eachPostData} index={index}></EachPostSummary>
       </div>
       <div className="box-border  border-b-[1px] border-[#e7e6e6] border-solid mt-[15px] pb-[5px]  ">
         <div className="flex flex-row justify-end items-center  group cursor-pointer ">

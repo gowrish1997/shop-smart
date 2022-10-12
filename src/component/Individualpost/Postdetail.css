@@ -30,9 +30,9 @@
     letter-spacing: 0.015em;
     font-style:normal ;
 }
-strong{
+/* strong{
     font-weight: bolder !important;
-}
+} */
 
 .fusion-post-content p, .post-content p {
     margin: 0 0 20px;
@@ -140,4 +140,7 @@ td {
  .fusion-title-size-two, h2 {
     margin-top: 0em;
     margin-bottom: 1.1em;
+}
+bold, strong {
+    font-weight: bolder;
 }

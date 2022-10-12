@@ -33,7 +33,7 @@ const EachPostImage = ({ eachPostData }) => {
           </div>
         </div>
         <div
-          className="text-[24px] font-[600] leading-[1.2] tracking-[-0.015em] text-[#141617] "
+          className="text-[24px] font-[600] leading-[1.2] tracking-[-0.015em] text-[#141617] text-center "
           dangerouslySetInnerHTML={{
             __html: eachPostData?.title?.rendered,
           }}
