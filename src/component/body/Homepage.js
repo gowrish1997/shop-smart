@@ -2,19 +2,40 @@ import axios from "axios";
 
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory, useRouteMatch } from "react-router-dom";
 import Eachpost from "./EachpostCopy";
 
 const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
+  const [originalPath, setorginalPath] = useState(null);
+  const [categoryId,setCategoryId]=useState(null)
+  let history = useHistory();
   const location = useLocation();
-  // console.log(location);
-  const [page, setPage] = useState(0);
+
+  useEffect(() => {
+    const original = location?.pathname?.slice(
+      0,
+      location?.pathname?.lastIndexOf("/")
+    );
+  setorginalPath(original);
+  setCategoryId(location?.state?.categoryId)
+  }, [location]);
   const onChangeHandler = (e) => {
     window.scroll(0, 0);
     handlePageClick(e);
-    setPage(e.selected);
+    if (originalPath) {
+      if(categoryId && !originalPath.includes('page') ){
+        history.push({pathname:`${originalPath}/page/${e.selected + 1}`,state:{categoryId:categoryId}});
+      }
+      else{
+        history.push({pathname:`${originalPath}/${e.selected + 1}`,state:{categoryId:categoryId}});
+      }
+  
+   
+    } else {
+      history.push(`/page/${e.selected + 1}`);
+    }
   };
-
+  
   return (
     <div className=" box-border bg-[#ffffff] p-[30px] pt-[60px] flex flex-row justify-center">
       <div className="max-w-[1200px] h-full  flex flex-col items-start justify-start ">
@@ -22,39 +43,34 @@ const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
           return <Eachpost eachPostData={data} index={index} key={index} />;
         })}
         <div className="w-full flex flex-row justify-end ">
-          <Link
-            to={{
-              pathname: `${location.pathname}/page/${page}/`,
-              state: { page: page },
-            }}
+          <ReactPaginate
+            nextLabel="Next >"
+            onPageChange={onChangeHandler}
+            pageRangeDisplayed={2}
+            marginPagesDisplayed={1}
+            pageCount={pageCount}
+            previousLabel="< Previous"
+            pageClassName="page-item"
+            pageLinkClassName="prev-page-link"
+            previousClassName={`${
+              currentPage + 1 == 1 ? "prev-page-item1" : "prev-page-item"
+            }`}
+            previousLinkClassName="page-link"
+            nextClassName={`${
+              currentPage + 1 == pageCount
+                ? "next-page-item1"
+                : "next-page-item"
+            }`}
+            nextLinkClassName="next-page-link"
+            breakLabel=".."
+            breakClassName="page-item1"
+            breakLinkClassName="page-link"
+            containerClassName="pagination"
+            activeClassName="active"
+            renderOnZeroPageCount={null}
           >
-            <ReactPaginate
-              nextLabel="Next >"
-              onPageChange={onChangeHandler}
-              pageRangeDisplayed={2}
-              marginPagesDisplayed={1}
-              pageCount={pageCount}
-              previousLabel="< Previous"
-              pageClassName="page-item"
-              pageLinkClassName="prev-page-link"
-              previousClassName={`${
-                currentPage + 1 == 1 ? "prev-page-item1" : "prev-page-item"
-              }`}
-              previousLinkClassName="page-link"
-              nextClassName={`${
-                currentPage + 1 == pageCount
-                  ? "next-page-item1"
-                  : "next-page-item"
-              }`}
-              nextLinkClassName="next-page-link"
-              breakLabel=".."
-              breakClassName="page-item1"
-              breakLinkClassName="page-link"
-              containerClassName="pagination"
-              activeClassName="active"
-              renderOnZeroPageCount={null}
-            />
-          </Link>
+            {" "}
+          </ReactPaginate>
         </div>
       </div>
     </div>
@@ -62,3 +78,4 @@ const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
 };
 
 export default Homepage;
+

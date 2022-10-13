@@ -41,7 +41,7 @@ const Header = () => {
                 <Link
                 key={index}
                   to={{
-                    pathname: `/category/${navCategory.slug}`,
+                    pathname: `/category/${navCategory.slug}/`,
                     state: { categoryId: navCategory.id },
                   }}
                 >

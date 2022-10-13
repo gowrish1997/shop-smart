@@ -1,9 +1,8 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import EachPostCategory from "./EachPostCategory";
 const EachPostImage = ({ eachPostData }) => {
-    const [postImage, setPostImage] = useState(null);
+  const [postImage, setPostImage] = useState(null);
   useEffect(() => {
     const media = axios.get(
       `https://smartblog.portfolios.digital/wp-json/wp/v2/media/${eachPostData?.featured_media}`
@@ -38,7 +37,7 @@ const EachPostImage = ({ eachPostData }) => {
             __html: eachPostData?.title?.rendered,
           }}
         ></div>
-       <EachPostCategory eachPostData={eachPostData}></EachPostCategory>
+        <EachPostCategory eachPostData={eachPostData}></EachPostCategory>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const RelatedPostDetail = ({data}) => {
-    console.log(data)
+  
   return (
     <div className=' box-border flex flex-col flex-wrap justify-start items-start max-w-[400px]  '>
         <Link> <div className='font-[400] leading-[20px] hover:text-[#65bd7d] hover:underline' dangerouslySetInnerHTML={{__html:data?.title}}></div></Link>

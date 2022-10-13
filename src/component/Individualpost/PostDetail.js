@@ -5,11 +5,21 @@ import RelatedPost from "./RelatedPost";
 import PostSummary from "./PostSummary";
 import PostAuthor from "./PostAuthor";
 import "./Postdetail.css";
-const PostDetail = ({ allpost }) => {
-  const [postIndex, setPostIndex] = useState(null);
+import axios from "axios";
+const PostDetail = ({ allPostIds }) => {
+  const [postDetail, setpostDetail] = useState(null);
+  const [postIndex, setpostIndex] = useState(null);
   const location = useLocation();
   useEffect(() => {
-    setPostIndex(location.state.index);
+    const index=allPostIds?.findIndex((data)=>data.id==location.state.index)
+setpostIndex(index)
+axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/posts/${allPostIds[index]?.id}`).then((result)=>{
+  setpostDetail(result.data)
+
+}).catch((error)=>{
+  console.log(error.message)
+})
+
   }, [location]);
 
   return (
@@ -21,20 +31,20 @@ const PostDetail = ({ allpost }) => {
           ) : (
             <Link
               to={{
-                pathname: `/${allpost[postIndex - 1]?.slug}/`,
-                state: { index: postIndex - 1 },
+                pathname: `/${allPostIds[postIndex - 1]?.slug}/`,
+                state: { index: allPostIds[postIndex - 1]?.id },
               }}
             >
               <div className="box-border mr-[30px] text-[17px] hover:text-[#65bd7d] cursor-pointer ">{`< Previous`}</div>
             </Link>
           )}
-          {postIndex == allpost.length - 1 ? (
+          {postIndex == allPostIds.length - 1 ? (
             ""
           ) : (
             <Link
               to={{
-                pathname: `/${allpost[postIndex + 1]?.slug}/`,
-                state: { index: postIndex + 1 },
+                pathname: `/${allPostIds[postIndex + 1]?.slug}/`,
+                state: { index: allPostIds[postIndex + 1]?.id },
               }}
             >
               <div className="box-border  text-[17px] hover:text-[#65bd7d] cursor-pointer ">{`Next >`}</div>
@@ -46,22 +56,22 @@ const PostDetail = ({ allpost }) => {
           <h1
             className=" box-border text-[#141617] text-[36px] mb-[28px] font-[600]  "
             dangerouslySetInnerHTML={{
-              __html: allpost[postIndex]?.title?.rendered,
+              __html: postDetail?.title?.rendered,
             }}
           ></h1>
           <div
             className="post-content mb-[60px] "
             dangerouslySetInnerHTML={{
-              __html: allpost[postIndex]?.content?.rendered,
+              __html:postDetail?.content?.rendered,
             }}
           ></div>
-           <RelatedPost post={allpost[postIndex]?.["jetpack-related-posts"]} ></RelatedPost>
-           <PostSummary post={allpost[postIndex]} ></PostSummary>
-           <PostAuthor post={allpost[postIndex]}></PostAuthor>
-          <AuthRelatedPost
-            post={allpost[postIndex]?.author}
+           <RelatedPost post={postDetail?.["jetpack-related-posts"]} ></RelatedPost>
+           <PostSummary post={postDetail} ></PostSummary>
+           <PostAuthor post={postDetail}></PostAuthor>
+          {/* <AuthRelatedPost
+            post={postDetail?.author}
             allpost={allpost}
-          ></AuthRelatedPost>
+          ></AuthRelatedPost> */}
        
         </article>
       </div>
