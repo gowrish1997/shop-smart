@@ -6,7 +6,6 @@ w-full
 flex
 flex-row
 justify-center
-
 h-[99px]
 px-[30px]
 text-[16px]

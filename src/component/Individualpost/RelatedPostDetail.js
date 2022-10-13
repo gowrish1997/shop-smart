@@ -5,7 +5,7 @@ const RelatedPostDetail = ({data}) => {
   
   return (
     <div className=' box-border flex flex-col flex-wrap justify-start items-start max-w-[400px]  '>
-        <Link> <div className='font-[400] leading-[20px] hover:text-[#65bd7d] hover:underline' dangerouslySetInnerHTML={{__html:data?.title}}></div></Link>
+         <div className='font-[400] leading-[20px] hover:text-[#65bd7d] hover:underline' dangerouslySetInnerHTML={{__html:data?.title}}></div>
         <div className='opacity-[0.6] leading-[20px] '>
         {`${new Date(data?.date).toLocaleString("default", {
           month: "long",

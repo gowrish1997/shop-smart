@@ -1,18 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Scrollheight } from "../../Customhook/Scrollheight";
-import {
-  Logocontainer,
-  Maincontainer,
-  Navcontainer,
-  Insidecontainer,
-  Searchcontainer,
-  Movingcontainer,
-  Clearcontainer,
-  Inpucontainer,
-  Logoimage,
-  Category,
-} from "./Headerstyle";
+import React, { useEffect, useLayoutEffect } from "react";
+import HeaderNav from "./HeaderNav";
+import { Link, useLocation } from "react-router-dom";
 const navComponent = [
   { id: 2, name: "Tech", slug: "Tech", visibility: false },
   {
@@ -26,54 +14,17 @@ const navComponent = [
 ];
 
 const Header = () => {
-  const scrollheight = Scrollheight();
+  console.log("heaader");
+  const location = useLocation();
+  navComponent.forEach((data) => {
+    if (location?.state?.categoriesID?.includes(data.id)) {
+      data.visibility = true;
+    } else {
+      data.visibility = false;
+    }
+  });
 
-  return (
-    <Maincontainer>
-      <Insidecontainer>
-        <Logocontainer>
-          <Logoimage src="https://shopsmart.in/wp-content/uploads/2022/02/Shopsmart-logo.png"></Logoimage>
-        </Logocontainer>
-        <Movingcontainer>
-          <Navcontainer>
-            {navComponent.map((navCategory,index) => {
-              return (
-                <Link
-                key={index}
-                  to={{
-                    pathname: `/category/${navCategory.slug}/`,
-                    state: { categoryId: navCategory.id },
-                  }}
-                >
-                  <Category
-                    key={navCategory.id}
-                    className={`${
-                      navCategory.visibility
-                        ? " border-[#65bd7d]"
-                        : "border-transparent"
-                    }`}
-                  >
-                    {navCategory.name}
-                  </Category>
-                </Link>
-              );
-            })}
-            <li className="pt-[31px]">
-              <i class="far fa-search"></i>
-            </li>
-          </Navcontainer>
-
-          <Searchcontainer>
-            <Inpucontainer></Inpucontainer>
-
-            <Clearcontainer>
-              <i class="fad fa-window-close"></i>
-            </Clearcontainer>
-          </Searchcontainer>
-        </Movingcontainer>
-      </Insidecontainer>
-    </Maincontainer>
-  );
+  return <HeaderNav navComponent={navComponent}></HeaderNav>;
 };
 
 export default Header;

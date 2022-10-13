@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Link,useHistory } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import EachPostCategory from "./EachPostCategory";
 const EachPostCatAutDatCom = ({ eachPostData }) => {
   const [postUser, setPostUser] = useState(null);
@@ -23,8 +23,8 @@ axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/users/${id}?_field
   history.push({pathname:`/auth/${value?.data?.name}`, state:{ index:id }})
 })
 
+}
 
- }
   return (
     <div className="box-border  text-[13px] leading-[1.5] tracking-[-0.015em] flex flex-row flex-wrap  ">
        {/* <Link  to={{

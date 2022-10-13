@@ -4,7 +4,7 @@ import { useLocation, useParams } from "react-router-dom";
 import Homepage from "./Homepage";
 const PaginatedItems = ({ allpost, itemsPerPage=10 }) => {
 const location=useParams()
-// console.log(location)
+
 
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
@@ -12,6 +12,7 @@ const location=useParams()
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
+   
     const endOffset = itemOffset + itemsPerPage;
 
     setCurrentItems(allpost?.slice(itemOffset, endOffset));
@@ -35,4 +36,4 @@ const location=useParams()
     </>
   );
 };
-export default PaginatedItems;
+export default React.memo(PaginatedItems)

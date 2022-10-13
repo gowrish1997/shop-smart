@@ -32,7 +32,7 @@ axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/posts/${allPostIds
             <Link
               to={{
                 pathname: `/${allPostIds[postIndex - 1]?.slug}/`,
-                state: { index: allPostIds[postIndex - 1]?.id },
+                state: { index: allPostIds[postIndex - 1]?.id,categoriesID:allPostIds[postIndex - 1]?.categories },
               }}
             >
               <div className="box-border mr-[30px] text-[17px] hover:text-[#65bd7d] cursor-pointer ">{`< Previous`}</div>
@@ -44,7 +44,7 @@ axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/posts/${allPostIds
             <Link
               to={{
                 pathname: `/${allPostIds[postIndex + 1]?.slug}/`,
-                state: { index: allPostIds[postIndex + 1]?.id },
+                state: { index: allPostIds[postIndex + 1]?.id,categoriesID:allPostIds[postIndex +1]?.categories },
               }}
             >
               <div className="box-border  text-[17px] hover:text-[#65bd7d] cursor-pointer ">{`Next >`}</div>
