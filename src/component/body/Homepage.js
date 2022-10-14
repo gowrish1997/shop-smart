@@ -24,18 +24,18 @@ const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
     handlePageClick(e);
     if (originalPath) {
       if(categoryId && !originalPath.includes('page') ){
-        history.push({pathname:`${originalPath}/page/${e.selected + 1}`,state:{categoryId:categoryId}});
+        history.push({pathname:`${originalPath}/page/${e.selected + 1}`,state:{categoryId:categoryId,pageIndex:e.selected}});
       }
       else{
-        history.push({pathname:`${originalPath}/${e.selected + 1}`,state:{categoryId:categoryId}});
+        history.push({pathname:`${originalPath}/${e.selected + 1}`,state:{categoryId:categoryId,pageIndex:e.selected}});
       }
   
    
     } else {
-      history.push(`/page/${e.selected + 1}`);
+      history.push({pathname: `/page/${e.selected + 1}`,state:{pageIndex:e.selected}});
     }
   };
-  
+
   return (
     <div className=" box-border bg-[#ffffff] p-[30px] pt-[60px] flex flex-row justify-center">
       <div className="max-w-[1200px] min-h-[100vh] h-full  flex flex-col items-start justify-start ">

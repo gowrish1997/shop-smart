@@ -4,7 +4,7 @@ import Input from "./Input";
 const Dropdown = ({ navComponent }) => {
   const [showDropdown, setshowDropdown] = useState(true);
   function showDropdownHandler() {
-    console.log("jello")
+  
     setshowDropdown((prev) => !prev);
   }
   return (

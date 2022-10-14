@@ -4,6 +4,7 @@ import AuthRelatedPost from "./AuthRelatedPost";
 import RelatedPost from "./RelatedPost";
 import PostSummary from "./PostSummary";
 import PostAuthor from "./PostAuthor";
+import Commentcontainer from "./Commentcontainer";
 import "./Postdetail.css";
 import axios from "axios";
 const PostDetail = ({ allPostIds }) => {
@@ -72,7 +73,7 @@ axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/posts/${allPostIds
             post={postDetail?.author}
             allpost={allpost}
           ></AuthRelatedPost> */}
-       
+       <Commentcontainer></Commentcontainer>
         </article>
       </div>
     </div>
