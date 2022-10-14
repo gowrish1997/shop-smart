@@ -8,6 +8,7 @@ import PostDetail from "./component/Individualpost/PostDetail";
 import AuthorDetail from "./component/Author/AuthorDetail";
 import Footer from "./component/Footer/Footer";
 import ScrollUp from "./component/ScrollUp";
+import Slider from "./component/Gallery/Slider";
 function App() {
   console.log('app')
   const location = useLocation();
@@ -86,7 +87,8 @@ const categoryId = location?.state?.categoryId;
       </Switch>
 
       <Footer></Footer>
-    </div>
+      {/* <Slider></Slider> */}
+    </div> 
   );
 }
 export default App;

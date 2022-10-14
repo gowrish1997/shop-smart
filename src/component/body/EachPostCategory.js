@@ -31,7 +31,7 @@ const EachPostCategory = ({ eachPostData }) => {
             <Link
         
               to={{
-                pathname: `/category/${category.value}/`,
+                pathname: `/category/${category.value.replace(' ','-')}/`,
                 state: { categoryId:category.id },
               }}
             >    <span
@@ -44,7 +44,7 @@ const EachPostCategory = ({ eachPostData }) => {
             <Link
         
             to={{
-              pathname: `/category/${category.value}/`,
+              pathname: `/category/${category.value.replace(' ','-')}/`,
               state: { categoryId:category.id },
             }}
           >      <span

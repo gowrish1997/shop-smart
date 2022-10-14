@@ -38,7 +38,7 @@ const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
   
   return (
     <div className=" box-border bg-[#ffffff] p-[30px] pt-[60px] flex flex-row justify-center">
-      <div className="max-w-[1200px] h-full  flex flex-col items-start justify-start ">
+      <div className="max-w-[1200px] min-h-[100vh] h-full  flex flex-col items-start justify-start ">
         {allpost?.map((data, index) => {
           return <Eachpost eachPostData={data} index={index} key={index} />;
         })}

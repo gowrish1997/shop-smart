@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+
 import HeaderNav from "./HeaderNav";
 import { Link, useLocation } from "react-router-dom";
 const navComponent = [

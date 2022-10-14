@@ -1,22 +1,17 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import useScrollDirection from "../../Customhook/Scrollheight";
-import {
-  Logocontainer,
-  Maincontainer,
-  Navcontainer,
-  Insidecontainer,
-  Searchcontainer,
-  Movingcontainer,
-  Clearcontainer,
-  Inpucontainer,
-  Logoimage,
-  Category,
-} from "./Headerstyle";
+import Navigation from "./Navigation";
+import Search from "./SearchContainer";
+import Dropdown from "./Dropdown";
+import { Logocontainer, Insidecontainer, Logoimage } from "./Headerstyle";
 const HeaderNav = ({ navComponent }) => {
-
   const { height } = useScrollDirection();
+  const [show, setShow] = useState(true);
   const location = useLocation();
+  function searchShowHandler() {
+    setShow((prev) => !prev);
+  }
 
   if (location?.state?.categoryId) {
     navComponent?.forEach((data) => {
@@ -30,61 +25,30 @@ const HeaderNav = ({ navComponent }) => {
 
   return (
     <div
-      className={`box-border
-    w-full
-    flex
-    flex-row
-    justify-center
-    h-[99px]
-    px-[30px]
-    text-[16px]
-    bg-[#ffffff]
-    z-50
-    sticky top-[0px] left-[0px]
-  ${height>0?'shadow shadow-[rgb(0 0 0 0.12)]':''}
+      className={`box-border w-full flex flex-row justify-center h-full md:h-[99px] px-[30px] text-[16px] bg-[#ffffff]  md:first-letter:sticky top-[0px] left-[0px] ${
+        height > 0 ? "shadow shadow-[rgb(0 0 0 0.12)]" : ""
+      }
     `}
     >
       <Insidecontainer>
         <Logocontainer>
           <Logoimage src="https://shopsmart.in/wp-content/uploads/2022/02/Shopsmart-logo.png"></Logoimage>
         </Logocontainer>
-        <Movingcontainer>
-          <Navcontainer>
-            {navComponent?.map((category, index) => {
-              return (
-                <Link
-                  key={index}
-                  to={{
-                    pathname: `/category/${category.slug}/`,
-                    state: { categoryId: category.id },
-                  }}
-                >
-                  <Category
-                    key={category.id}
-                    className={`${
-                      category.visibility
-                        ? " border-[#65bd7d] text-[#65bd7d]"
-                        : "border-transparent"
-                    }`}
-                  >
-                    {category.name}
-                  </Category>
-                </Link>
-              );
-            })}
-            <li className="pt-[31px]">
-              <i class="far fa-search"></i>
-            </li>
-          </Navcontainer>
 
-          <Searchcontainer>
-            <Inpucontainer></Inpucontainer>
+        <div
+          className={`hidden md:flex box-border flex-col justify-start items-start text-[#161417] ${
+            show ? "translate-y-[-100px]" : "translate-y-[0px]"
+          } transition-translate duration-700 ease-in
+`}
+        >
+          <Search searchShowHandler={searchShowHandler}></Search>
+          <Navigation
+            navComponent={navComponent}
+            searchShowHandler={searchShowHandler}
+          ></Navigation>
+        </div>
 
-            <Clearcontainer>
-              <i class="fad fa-window-close"></i>
-            </Clearcontainer>
-          </Searchcontainer>
-        </Movingcontainer>
+        <Dropdown navComponent={navComponent}></Dropdown>
       </Insidecontainer>
     </div>
   );

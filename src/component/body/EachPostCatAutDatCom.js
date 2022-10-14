@@ -18,9 +18,12 @@ const history=useHistory();
  function authNavigateHandler(id){
   console.log(id)
 axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/users/${id}?_fields=name`).then((value)=>{
-  console.log("help")
-  console.log(value?.data?.name)
-  history.push({pathname:`/auth/${value?.data?.name}`, state:{ index:id }})
+  
+  console.log(value.data.name.indexOf("%"))
+
+  history.push({pathname:`/auth/${value?.data?.name.slice(
+    0,value?.data?.name.lastIndexOf(" ")
+  )}`, state:{ index:id }})
 })
 
 }

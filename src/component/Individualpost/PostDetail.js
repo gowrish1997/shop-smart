@@ -24,7 +24,7 @@ axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/posts/${allPostIds
 
   return (
     <div className="box-border bg-[#ffffff] p-[30px] pt-[60px] flex flex-row justify-center text-[#141617] ">
-      <div className="max-w-[1200px] h-full  flex flex-col items-start justify-start text-left leading-[1.2] tracking-[0.015em] ">
+      <div className="max-w-[1200px] min-h-[100vh] h-full  flex flex-col items-start justify-start text-left leading-[1.2] tracking-[0.015em] ">
         <div className="box-border flex flex-row w-full justify-end items-center border-y-[1px] border-y-[#e7e6e6] border-y-solid py-[5px] mb-[60px] ">
           {postIndex == 0 ? (
             ""

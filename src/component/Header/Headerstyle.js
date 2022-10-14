@@ -1,24 +1,17 @@
 import tw from "tailwind-styled-components";
 
-export const Maincontainer = tw.div`
-box-border
-w-full
-flex
-flex-row
-justify-center
-h-[99px]
-px-[30px]
-text-[16px]
 
-`;
 export const Insidecontainer = tw.div`
 box-border
 flex
-flex-row
+flex-col
+md:flex-row
 w-full
 h-full
-items-start
-justify-between
+justify-center
+items-center
+md:items-start
+md:justify-between
 text-[16px]
 text-[#141617]
 max-w-[1200px]
@@ -27,34 +20,30 @@ font-family: var(--nav_typography-font-family);
     tracking-[0.015em]
     not-italic
  overflow-hidden
+ 
 `;
 
 export const Logocontainer = tw.div`
-mt-[31px]
-mb-[31px]
+mt-[20px]
+md:mt-[31px]
+mb-[20px]
+md:mb-[31px]
 ml-[0px]
 mr-[0px]
 w-[150px]
 h-[37px]
+
 `;
 export const Logoimage = tw.img`
 w-full
 h-full
 `;
-export const Movingcontainer = tw.div`
-position: relative;
-box-border
-flex
-flex-col
-justify-start
-items-start
-text-[#161417]
 
-`;
 export const Searchcontainer = tw.div`
 box-border
 flex
 flex-row
+w-full
 h-[99px]
 items-center
 justify-start
@@ -62,7 +51,8 @@ justify-start
 export const Inpucontainer = tw.input`
 box-border
 flex-auto
-ml-[48px]
+w-full
+
 `;
 export const Clearcontainer = tw.div`
 ml-[10px]
