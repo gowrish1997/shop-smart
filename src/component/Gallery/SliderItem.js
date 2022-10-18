@@ -5,3 +5,4 @@ export default ({ children, ...params }) => (
     <span>{children}</span>
   </div>
 );
+

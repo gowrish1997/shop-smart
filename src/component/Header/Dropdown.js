@@ -21,7 +21,7 @@ const Dropdown = ({ navComponent }) => {
         </div>
       </div>
     
-        <div className={`box-border w-full overflow-hidden flex flex-col justify-start items-start ${showDropdown?'h-[0px]':'h-full'}  transition-height ease-in-out duration-1000 `}>
+        <div className={`box-border w-full overflow-hidden flex flex-col justify-start items-start ${showDropdown?'h-[0px]':'h-[250px] '}  transition-height duration-700 ease-in  `}>
           <div className="box-border w-full flex flex-col items-start justify-start cursor-pointer ">
             {navComponent?.map((category, index) => {
               return (

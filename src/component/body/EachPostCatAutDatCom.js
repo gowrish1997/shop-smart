@@ -23,7 +23,7 @@ axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/users/${id}?_field
 
   history.push({pathname:`/auth/${value?.data?.name.slice(
     0,value?.data?.name.lastIndexOf(" ")
-  )}`, state:{ index:id }})
+  )}/page/1`, state:{ index:id,pageIndex:0 }})
 })
 
 }

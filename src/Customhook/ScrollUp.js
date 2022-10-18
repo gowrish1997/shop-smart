@@ -1,7 +1,7 @@
 import React from 'react'
-import useScrollDirection from '../Customhook/Scrollheight'
+import useScrollDirection from './Scrollheight'
 const ScrollUp = () => {
-    console.log('scrollip')
+
        const {scrollDirection,height} = useScrollDirection();
        function upwardHandler() {
         window.scrollTo({

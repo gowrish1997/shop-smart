@@ -1,38 +1,43 @@
 import axios from "axios";
-
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { Link, useLocation, useHistory, useRouteMatch } from "react-router-dom";
 import Eachpost from "./EachpostCopy";
 
-const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
+const Allpost = ({ allpost, pageCount, currentPage }) => {
   const [originalPath, setorginalPath] = useState(null);
-  const [categoryId,setCategoryId]=useState(null)
+  const [categoryId, setCategoryId] = useState(null);
   let history = useHistory();
   const location = useLocation();
-
+console.log(location.pathname)
   useEffect(() => {
     const original = location?.pathname?.slice(
       0,
       location?.pathname?.lastIndexOf("/")
     );
-  setorginalPath(original);
-  setCategoryId(location?.state?.categoryId)
+    setorginalPath(original);
+    setCategoryId(location?.state?.categoryId);
   }, [location]);
   const onChangeHandler = (e) => {
     window.scroll(0, 0);
-    handlePageClick(e);
+
     if (originalPath) {
-      if(categoryId && !originalPath.includes('page') ){
-        history.push({pathname:`${originalPath}/page/${e.selected + 1}`,state:{categoryId:categoryId,pageIndex:e.selected}});
+      if (!originalPath.includes("page")) {
+        history.push({
+          pathname: `${originalPath}/page/${e.selected + 1}`,
+          state: { categoryId: categoryId, pageIndex: e.selected,index:location?.state?.index },
+        });
+      } else {
+        history.push({
+          pathname: `${originalPath}/${e.selected + 1}`,
+          state: { categoryId: categoryId, pageIndex: e.selected,index:location?.state?.index },
+        });
       }
-      else{
-        history.push({pathname:`${originalPath}/${e.selected + 1}`,state:{categoryId:categoryId,pageIndex:e.selected}});
-      }
-  
-   
     } else {
-      history.push({pathname: `/page/${e.selected + 1}`,state:{pageIndex:e.selected}});
+      history.push({
+        pathname: `/page/${e.selected + 1}`,
+        state: { pageIndex: e.selected, categoryId: categoryId,index:location?.state?.index },
+      });
     }
   };
 
@@ -66,8 +71,10 @@ const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
             breakClassName="page-item1"
             breakLinkClassName="page-link"
             containerClassName="pagination"
+            // initialSelected={currentPage}
             activeClassName="active"
             renderOnZeroPageCount={null}
+            forcePage={currentPage}
           >
             {" "}
           </ReactPaginate>
@@ -77,5 +84,4 @@ const Homepage = ({ allpost, handlePageClick, pageCount, currentPage }) => {
   );
 };
 
-export default Homepage;
-
+export default Allpost;

@@ -14,7 +14,7 @@ const navComponent = [
 ];
 
 const Header = () => {
-  console.log("heaader");
+
   const location = useLocation();
   navComponent.forEach((data) => {
     if (location?.state?.categoriesID?.includes(data.id)) {

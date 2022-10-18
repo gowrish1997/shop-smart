@@ -21,8 +21,8 @@ const Navigation = ({ navComponent,searchShowHandler }) => {
           <Link
             key={index}
             to={{
-              pathname: `/category/${category.slug}/`,
-              state: { categoryId: category.id },
+              pathname: `/category/${category.slug}/page/1`,
+              state: { categoryId: category.id,pageIndex:0 },
             }}
           >
             <Category

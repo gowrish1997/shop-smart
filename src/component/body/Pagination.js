@@ -1,34 +1,39 @@
 import { checkTargetForNewValues } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import Homepage from "./Homepage";
-const PaginatedItems = ({ allpost, itemsPerPage = 10 }) => {
-  const location = useLocation()
-  console.log(location?.state?.pageIndex)
+import Allpost from "./Allpost";
+const PaginatedItems = ({ allpost, totalData, itemsPerPage = 10 }) => {
+  const location = useLocation();
+
   const [currentItems, setCurrentItems] = useState(null);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage;
-   setCurrentItems(allpost?.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(allpost?.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, allpost,location]);
+    if (location?.state?.pageIndex) {
+      const newOffset =
+        (location?.state?.pageIndex * itemsPerPage) % allpost?.length;
 
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % allpost.length;
-    setCurrentPage(event.selected);
-    setItemOffset(newOffset);
-  };
+      setCurrentPage(location?.state?.pageIndex);
+
+      const endOffset = newOffset + itemsPerPage;
+
+      setCurrentItems(allpost?.slice(newOffset, endOffset));
+      setPageCount(Math.ceil(totalData / itemsPerPage));
+    } else {
+      const endOffset = itemOffset + itemsPerPage;
+      setCurrentItems(allpost?.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(totalData / itemsPerPage));
+    }
+  }, [itemOffset, itemsPerPage, allpost, location]);
 
   return (
     <>
-      <Homepage
+      <Allpost
         allpost={currentItems}
-        handlePageClick={handlePageClick}
         pageCount={pageCount}
-        currentPage={currentPage}
+        currentPage={location?.state?.pageIndex}
       />
     </>
   );
