@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RelatedPostDetail = ({ data }) => {
-  console.log(data?.title?.replace(/  +/g,' ').replace(' ','-'));
+
   return (
     <div className=" box-border flex flex-col flex-wrap justify-start items-start max-w-[400px]  ">
       <Link

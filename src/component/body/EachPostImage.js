@@ -13,7 +13,7 @@ const { data, isLoading } = useQuery(
     },
     { keepPreviousData: true }
   );
-  console.log(data);
+
   return (
     <div className="group box-border relative w-[320px] h-[202px] min-w-[320px] min-h-[202px] mr-[17px] overflow-hidden  ">
       <div className="box-border w-full h-full">

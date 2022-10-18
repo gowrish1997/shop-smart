@@ -1,40 +1,42 @@
 import axios from "axios";
-import { Link,useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import React, { useEffect, useMemo, useState } from "react";
+import { useQuery } from "react-query";
 import EachPostCategory from "./EachPostCategory";
 const EachPostCatAutDatCom = ({ eachPostData }) => {
-  const [postUser, setPostUser] = useState(null);
-const history=useHistory();
-  useEffect(() => {
-    const user = axios.get(
-      `https://smartblog.portfolios.digital/wp-json/wp/v2/users/${eachPostData?.author}`
-    );
-
-    Promise.all([user]).then((results) => {
-      setPostUser(results[0]);
-    });
-    
-  }, [eachPostData]);
- function authNavigateHandler(id){
-  console.log(id)
-axios.get(`https://smartblog.portfolios.digital/wp-json/wp/v2/users/${id}?_fields=name`).then((value)=>{
   
-  console.log(value.data.name.indexOf("%"))
 
-  history.push({pathname:`/auth/${value?.data?.name.slice(
-    0,value?.data?.name.lastIndexOf(" ")
-  )}/page/1`, state:{ index:id,pageIndex:0 }})
-})
+  const history = useHistory();
 
-}
+  const { data, isLoading } = useQuery(
+ 
+    ["EachPostCatAutDatCom", eachPostData],
+    () => {
+      console.log("eachposrcatsuhda")
+      return axios.get(
+        `https://smartblog.portfolios.digital/wp-json/wp/v2/users/${eachPostData?.author}`
+      );
+    },
+    { keepPreviousData: true }
+  );
+ 
+  function authNavigateHandler(id) {
+    history.push({
+      pathname: `/auth/${data?.data?.name.slice(
+        0,
+        data?.data?.name.lastIndexOf(" ")
+      )}/page/1`,
+      state: { index: id, pageIndex: 0,authorDetail:data?.data},
+    });
+
+  }
 
   return (
     <div className="box-border  text-[13px] leading-[1.5] tracking-[-0.015em] flex flex-row flex-wrap  ">
-       {/* <Link  to={{
-                    pathname:`/auth/${eachPostData?.slug}/`,
-                    state: { index:eachPostData?.author },
-                  }}  > */}
-      <div onClick={()=>authNavigateHandler(eachPostData?.author)} className=" transition-colors duration-200 ease-in  leading-[1.2] tracking-[-0.015em]  text-left hover:text-[#65bd7d] cursor-pointer">{`By ${postUser?.data?.name} \u00A0|`}</div>
+      <div
+        onClick={() => authNavigateHandler(eachPostData?.author)}
+        className=" transition-colors duration-200 ease-in  leading-[1.2] tracking-[-0.015em]  text-left hover:text-[#65bd7d] cursor-pointer"
+      >{`By ${data?.data?.name} \u00A0|`}</div>
       <div>
         {`  \u00A0 ${new Date(eachPostData?.date).toLocaleString("default", {
           month: "long",

@@ -18,7 +18,7 @@ console.log('home')
     },
     { keepPreviousData : true }
   );
-console.log(data)
+
   return (
     <>
       <PaginatedItems

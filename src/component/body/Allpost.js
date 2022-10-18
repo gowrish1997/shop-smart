@@ -9,7 +9,7 @@ const Allpost = ({ allpost, pageCount, currentPage }) => {
   const [categoryId, setCategoryId] = useState(null);
   let history = useHistory();
   const location = useLocation();
-console.log(location.pathname)
+console.log(location)
   useEffect(() => {
     const original = location?.pathname?.slice(
       0,
@@ -25,12 +25,12 @@ console.log(location.pathname)
       if (!originalPath.includes("page")) {
         history.push({
           pathname: `${originalPath}/page/${e.selected + 1}`,
-          state: { categoryId: categoryId, pageIndex: e.selected,index:location?.state?.index },
+          state: { categoryId: categoryId, pageIndex: e.selected,index:location?.state?.index,authorDetail:location.state.authorDetail },
         });
       } else {
         history.push({
           pathname: `${originalPath}/${e.selected + 1}`,
-          state: { categoryId: categoryId, pageIndex: e.selected,index:location?.state?.index },
+          state: { categoryId: categoryId, pageIndex: e.selected,index:location?.state?.index,authorDetail:location.state.authorDetail },
         });
       }
     } else {
