@@ -7,6 +7,7 @@ import RelatedPost from "./RelatedPost";
 import PostSummary from "./PostSummary";
 import PostAuthor from "./PostAuthor";
 import Commentcontainer from "./Commentcontainer";
+import LoadingSkeleton from "../../Customhook/MaterialUiskeleton";
 import "./Postdetail.css";
 
 const PostDetail = ({ allPostIds }) => {
@@ -27,7 +28,10 @@ const PostDetail = ({ allPostIds }) => {
     },
     { keepPreviousData: true }
   );
-  console.log(isLoading);
+  if (isLoading){
+    return <LoadingSkeleton></LoadingSkeleton>
+  }
+
   return (
     <div className="box-border bg-[#ffffff] p-[30px] pt-[60px] flex flex-row justify-center text-[#141617] ">
       <div className="max-w-[1200px] min-h-[100vh] h-full  flex flex-col items-start justify-start text-left leading-[1.2] tracking-[0.015em] ">

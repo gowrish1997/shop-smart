@@ -1,10 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import EachPostCategory from "./EachPostCategory";
 const EachPostImage = ({ eachPostData }) => {
-const { data, isLoading } = useQuery(
+  const { data, isLoading } = useQuery(
     ["images", eachPostData],
     () => {
       return axios.get(

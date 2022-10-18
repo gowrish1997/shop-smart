@@ -2,11 +2,12 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { useLocation } from "react-router-dom";
+import Skeleton from "../Customhook/MaterialUiskeleton";
 import PaginatedItems from "../component/body/Pagination";
 const Author = () => {
   const { state } = useLocation();
-  console.log(state);
- const { data, isLoading } = useQuery(
+
+  const { data, isLoading } = useQuery(
     ["fruits", state],
     () => {
       return axios.get(
@@ -17,6 +18,9 @@ const Author = () => {
     },
     { keepPreviousData: true }
   );
+  if (isLoading){
+    return <Skeleton></Skeleton>
+  }
 
   return (
     <div className="box-border bg-[#ffffff] p-[30px] pt-[60px] flex flex-row justify-center text-[#141617] ">

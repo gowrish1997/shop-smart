@@ -1,35 +1,31 @@
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import React, { useEffect, useMemo, useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import EachPostCategory from "./EachPostCategory";
 const EachPostCatAutDatCom = ({ eachPostData }) => {
-  
-
   const history = useHistory();
 
   const { data, isLoading } = useQuery(
- 
     ["EachPostCatAutDatCom", eachPostData],
     () => {
-      console.log("eachposrcatsuhda")
       return axios.get(
         `https://smartblog.portfolios.digital/wp-json/wp/v2/users/${eachPostData?.author}`
       );
     },
     { keepPreviousData: true }
   );
- 
+
   function authNavigateHandler(id) {
     history.push({
       pathname: `/auth/${data?.data?.name.slice(
         0,
         data?.data?.name.lastIndexOf(" ")
       )}/page/1`,
-      state: { index: id, pageIndex: 0,authorDetail:data?.data},
+      state: { index: id, pageIndex: 0, authorDetail: data?.data },
     });
-
   }
+
 
   return (
     <div className="box-border  text-[13px] leading-[1.5] tracking-[-0.015em] flex flex-row flex-wrap  ">

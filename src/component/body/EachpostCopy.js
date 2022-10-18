@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import EachPostImage from "./EachPostImage";
 import EachPostDate from "./EachPostDate";
 import EachPostSummary from "./EachPostSummary";

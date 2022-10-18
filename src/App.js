@@ -13,8 +13,8 @@ import Slider from "./component/Gallery/Slider";
 import Home from "./Page/Home";
 import Category from "./Page/Category";
 import Author from "./Page/Author";
+import LoadingSkeleton from "./Customhook/MaterialUiskeleton";
 function App() {
-  console.log("this is app")
   const { data, isLoading } = useQuery(
     "APP",
     () => {
@@ -24,12 +24,12 @@ function App() {
     },
     { keepPreviousData: true }
   );
-  console.log(data);
+  
   return (
     <div className="App">
       <Header></Header>
       <ScrollUp></ScrollUp>
-      <Switch>
+     {isLoading?<LoadingSkeleton></LoadingSkeleton>:<Switch>
         <Route path="/" exact>
           {data && (
             <PaginatedItems
@@ -53,9 +53,10 @@ function App() {
           <Author></Author>
         </Route>
 
-        <Footer></Footer>
+       
         {/* <Slider></Slider> */}
-      </Switch>
+      </Switch>}
+      <Footer></Footer>
     </div>
   );
 }

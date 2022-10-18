@@ -3,8 +3,6 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import PostDetail from "./PostDetail";
 const IndividualPost = () => {
-  console.log("IndividualPost");
-
   const { data, isLoading } = useQuery(
     "IndividualPost",
     () => {

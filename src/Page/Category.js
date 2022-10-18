@@ -3,6 +3,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import PaginatedItems from "../component/body/Pagination";
+import Skeleton from "../Customhook/MaterialUiskeleton";
 function Category() {
   const location = useLocation();
 
@@ -19,7 +20,9 @@ function Category() {
     { keepPreviousData: true }
   );
 
-  console.log(isFetching);
+  if (isLoading){
+    return <Skeleton></Skeleton>
+  }
 
   return (
     <>

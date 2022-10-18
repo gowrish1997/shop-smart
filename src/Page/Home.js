@@ -3,9 +3,10 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import PaginatedItems from "../component/body/Pagination";
+import Skeleton from "../Customhook/MaterialUiskeleton";
 function Home() {
   const location = useLocation();
-console.log('home')
+
   const { data, isLoading } = useQuery(
     ["fruits", location?.state?.pageIndex],
     () => {
@@ -18,6 +19,9 @@ console.log('home')
     },
     { keepPreviousData : true }
   );
+  if (isLoading){
+    return <Skeleton></Skeleton>
+  }
 
   return (
     <>
