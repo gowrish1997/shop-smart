@@ -1,5 +1,4 @@
 
-import { Link, useLocation } from "react-router-dom";
 import Input from "./Input";
 import { Searchcontainer, Clearcontainer, Inpucontainer } from "./Headerstyle";
 const Search = ({ navComponent,searchShowHandler }) => {
