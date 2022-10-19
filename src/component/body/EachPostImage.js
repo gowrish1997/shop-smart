@@ -1,9 +1,11 @@
 import axios from "axios";
 import React from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import EachPostCategory from "./EachPostCategory";
-const EachPostImage = ({ eachPostData }) => {
+const EachPostImage = ({ eachPostData,allpost }) => {
+  const location=useLocation()
+
   const { data, isLoading } = useQuery(
     ["images", eachPostData],
     () => {
@@ -34,13 +36,24 @@ const EachPostImage = ({ eachPostData }) => {
               },
             }}
           >
-            <div className="box-border h-[40px] w-[40px] bg-black rounded-full flex flex-row justify-center items-center cursor-pointer ">
-              <i class="far fa-link fa-1x" style={{ color: "white" }}></i>
-            </div>
-          </Link>
+           
+              <div className="box-border h-[40px] w-[40px] bg-black rounded-full flex flex-row justify-center items-center cursor-pointer ">
+                <i class="far fa-link fa-1x" style={{ color: "white" }}></i>
+              </div>
+            </Link>
+         
+          <Link
+              to={{
+                pathname:'/#iLightbox[gallery]/',
+                state: {
+                  allpost: allpost,
+                 
+                },
+              }}
+            >
           <div className="box-border h-[40px] w-[40px] bg-black rounded-full flex flex-row justify-center items-center ml-[10px] cursor-pointer ">
             <i class="far fa-search fa-1x" style={{ color: "white" }}></i>
-          </div>
+          </div> </Link>
         </div>
         <Link
           to={{

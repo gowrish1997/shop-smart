@@ -5,12 +5,12 @@ import EachPostDate from "./EachPostDate";
 import EachPostSummary from "./EachPostSummary";
 import { Link } from "react-router-dom";
 
-const Eachpost = ({ eachPostData,index }) => {
+const Eachpost = ({ eachPostData,index,allpost }) => {
   return (
     <div className="box-border flex flex-col mb-[50px] ">
       <div className="box-border flex flex-row flex-wrap md:flex-nowrap justify-start align-baseline">
         <EachPostDate eachPostData={eachPostData}></EachPostDate>
-        <EachPostImage eachPostData={eachPostData}></EachPostImage>
+        <EachPostImage eachPostData={eachPostData} allpost={allpost} ></EachPostImage>
         <EachPostSummary eachPostData={eachPostData} index={index}></EachPostSummary>
       </div>
       <div className="box-border  border-b-[1px] border-[#e7e6e6] border-solid mt-[15px] pb-[5px]  ">
