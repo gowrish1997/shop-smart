@@ -16,6 +16,7 @@ import Category from "./Page/Category";
 import Author from "./Page/Author";
 import LoadingSkeleton from "./Customhook/MaterialUiskeleton";
 import ProductImagesSlider from "./component/Gallery/Slider";
+import Search from "./Page/Search";
 function App() {
   const { data, isLoading } = useQuery(
     "APP",
@@ -32,8 +33,8 @@ function App() {
       <Header></Header>
       <ScrollUp></ScrollUp>
       {isLoading ? (
-         <LoadingSkeleton></LoadingSkeleton>
-      ) : ( 
+        <LoadingSkeleton></LoadingSkeleton>
+      ) : (
         <Switch>
           <Route path="/" exact>
             {data && (
@@ -50,7 +51,7 @@ function App() {
           <Route path="/category/:categorytype/page/:pagenumber/">
             <Category></Category>
           </Route>
-         
+
           <Route path="/auth/:authname/page/:pagenumder/">
             <Author></Author>
           </Route>
@@ -60,9 +61,12 @@ function App() {
           <Route path="/:postDetail" exact>
             <IndividualPost></IndividualPost>
           </Route>
-
+          <Route path="/search/page/:pagenumber/" exact>
+          <Search></Search>
+          </Route>
         </Switch>
-     )}
+      )}
+
       <Footer></Footer>
     </div>
   );

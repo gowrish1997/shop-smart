@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { Link, useLocation, useHistory, useSearch} from "react-router-dom";
+import { Link, useLocation, useHistory, useSearch } from "react-router-dom";
 import Eachpost from "./EachpostCopy";
 const Allpost = ({ allpost, pageCount, currentPage }) => {
   const [originalPath, setorginalPath] = useState(null);
@@ -9,7 +9,6 @@ const Allpost = ({ allpost, pageCount, currentPage }) => {
   const location = useLocation();
 
   useEffect(() => {
-  
     const original = location?.pathname?.slice(
       0,
       location?.pathname?.lastIndexOf("/")
@@ -21,14 +20,14 @@ const Allpost = ({ allpost, pageCount, currentPage }) => {
     window.scroll(0, 0);
 
     if (originalPath) {
-      if (!originalPath.includes("page")) {
+      if (originalPath.includes("search")) {
         history.push({
-          pathname: `${originalPath}/page/${e.selected + 1}`,
+          pathname: `${originalPath}/${e.selected + 1}?search=${
+            location?.state?.searchvalue
+          }`,
           state: {
-            categoryId: categoryId,
-            pageIndex: e.selected,
-            index: location?.state?.index,
-            authorDetail: location.state.authorDetail,
+            searchvalue:location?.state?.searchvalue,
+            pageIndex:e.selected,
           },
         });
       } else {
@@ -56,9 +55,16 @@ const Allpost = ({ allpost, pageCount, currentPage }) => {
 
   return (
     <div className=" box-border bg-[#ffffff] p-[30px] pt-[60px] flex flex-row justify-center">
-       <div className="max-w-[1200px] min-h-[100vh] h-full  flex flex-col items-start justify-start ">
+      <div className="max-w-[1200px] min-h-[100vh] h-full  flex flex-col items-start justify-start ">
         {allpost?.map((data, index) => {
-          return <Eachpost key={index} eachPostData={data} index={index}  allpost={allpost}  />;
+          return (
+            <Eachpost
+              key={index}
+              eachPostData={data}
+              index={index}
+              allpost={allpost}
+            />
+          );
         })}
         <div className="w-full flex flex-row justify-end ">
           <ReactPaginate
@@ -88,13 +94,9 @@ const Allpost = ({ allpost, pageCount, currentPage }) => {
             activeClassName="active"
             renderOnZeroPageCount={null}
             forcePage={currentPage}
-          >
-    
-          </ReactPaginate>
+          ></ReactPaginate>
         </div>
-       
       </div>
-     
     </div>
   );
 };
